@@ -4,19 +4,20 @@ import {
   Card,
   CardContent,
 } from "@material-ui/core";
-import InfoBox from "./InfoBox";
+import InfoBox from "./components/InfoBox/InfoBox";
 
-import Table from "./Table";
-import { sortData, prettyPrintStat } from "./util";
+import Table from "./components/Table/Table";
+import { sortData } from "./utils/util";
 import numeral from "numeral";
 import "leaflet/dist/leaflet.css";
 import image from './images/image.png';
+import Chart from "./components/Chart/Chart";
+import LineChart from "./components/LineChart/LineChart";
 
 const App = () => {
-
-  const [countryInfo, setCountryInfo] = useState({});
- 
+  const [countryInfo, setCountryInfo] = useState({}); 
   const [tableData, setTableData] = useState([]);
+  const [vaccines, setVaccines] = useState([]);
   const [casesType, setCasesType] = useState("cases");
 
   const Emoji = props => (
@@ -51,7 +52,16 @@ const App = () => {
     getCountriesData();
   }, []);
 
-  console.log(casesType);
+  useEffect(() => {
+    fetch("https://disease.sh/v3/covid-19/vaccine/coverage/countries/CL")
+      .then((response) => response.json())
+      .then((data) => {
+        setVaccines(data);
+      });
+  }, []);
+
+
+
 
 
 
@@ -60,7 +70,7 @@ const App = () => {
       <div className="app__left">
       <img className="image" src={image} alt="COVID-19" />
         <div className="app__header">
-        <h1> Chile Coronavirus tracker <Emoji symbol="🇨🇱"/></h1>
+        <h1> Chile Coronavirus tracker <Emoji symbol="🇨🇱"/></h1>   
           
         </div>
         <div className="app__stats">
@@ -72,6 +82,7 @@ const App = () => {
             cases={numeral(countryInfo.todayCases).format('+0,0')}
             total={numeral(countryInfo.cases).format('0,0')}
           />
+         
           <InfoBox
             onClick={(e) => setCasesType("recovered")}
             title="Recuperados"
@@ -89,15 +100,15 @@ const App = () => {
             total={numeral(countryInfo.deaths).format("0,0")}
           />
         </div>
-       
+        <LineChart  vaccines ={vaccines} />
       </div>
       <Card className="app__right">
         <CardContent>
           <div className="app__information">
             <h3>Casos registrados por paises</h3>
             <Table countries={tableData} />
-            <h3>Casos en Chile</h3>
-            
+            <h3>Totalidad de casos en Chile</h3>
+            <Chart confirmed={countryInfo.cases} recovered={countryInfo.recovered} deaths={countryInfo.deaths} />
           </div>
         </CardContent>
       </Card>
