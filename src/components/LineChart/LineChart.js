@@ -18,15 +18,15 @@ const options = {
 function LineChart({ vaccines })  {
     const [dailyData, setDailyData] = useState([]);
    
-    console.log(vaccines.timeline)
+    console.log(vaccines)
 
     
     const data = {
-        labels: [],
+        labels: vaccines.map((data) => data.date),
         datasets: [
           {
             label: 'Personas vacunadas contra el covid',
-            data: [1,3,4,12,41,24],
+            data: vaccines.map((data) => data.daily),
             fill: true,
             backgroundColor: 'rgba(127, 200, 169, 0.2)',
             borderColor: 'rgb(127, 200, 169)',

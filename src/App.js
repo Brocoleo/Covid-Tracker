@@ -13,6 +13,7 @@ import "leaflet/dist/leaflet.css";
 import image from './images/image.png';
 import Chart from "./components/Chart/Chart";
 import LineChart from "./components/LineChart/LineChart";
+import Flag from 'react-world-flags'
 
 const App = () => {
   const [countryInfo, setCountryInfo] = useState({}); 
@@ -20,16 +21,7 @@ const App = () => {
   const [vaccines, setVaccines] = useState([]);
   const [casesType, setCasesType] = useState("cases");
 
-  const Emoji = props => (
-    <span
-        className="emoji"
-        role="img"
-        aria-label={props.label ? props.label : ""}
-        aria-hidden={props.label ? "false" : "true"}
-    >
-        {props.symbol}
-    </span>
-);
+
 
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/countries/CL?yesterday=30&strict=true")
@@ -53,10 +45,10 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    fetch("https://disease.sh/v3/covid-19/vaccine/coverage/countries/CL")
+    fetch("https://disease.sh/v3/covid-19/vaccine/coverage/countries/Chile?lastdays=30&fullData=true")
       .then((response) => response.json())
       .then((data) => {
-        setVaccines(data);
+        setVaccines(data.timeline);
       });
   }, []);
 
@@ -70,7 +62,7 @@ const App = () => {
       <div className="app__left">
       <img className="image" src={image} alt="COVID-19" />
         <div className="app__header">
-        <h1> Chile Coronavirus tracker <Emoji symbol="🇨🇱"/></h1>   
+        <h1> Chile Coronavirus tracker  <Flag code={ "CL" } height="25" /> </h1>   
           
         </div>
         <div className="app__stats">
