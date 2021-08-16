@@ -16,7 +16,6 @@ const options = {
 
 
 function LineChart({ vaccines })  {
-    const [dailyData, setDailyData] = useState([]);
    
     console.log(vaccines)
 

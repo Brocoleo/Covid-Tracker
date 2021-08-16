@@ -62,7 +62,7 @@ const App = () => {
       <div className="app__left">
       <img className="image" src={image} alt="COVID-19" />
         <div className="app__header">
-        <h1> Chile Coronavirus tracker  <Flag code={ "CL" } height="25" /> </h1>   
+        <h1> Estadisticas de la pandemia en nuestro pais  <Flag code={ "CL" } height="25" /> </h1>   
           
         </div>
         <div className="app__stats">
@@ -92,15 +92,17 @@ const App = () => {
             total={numeral(countryInfo.deaths).format("0,0")}
           />
         </div>
-        <LineChart  vaccines ={vaccines} />
+        <div className="app__vaccines">
+          <LineChart  vaccines ={vaccines} />
+        </div>
       </div>
       <Card className="app__right">
         <CardContent>
           <div className="app__information">
             <h3>Casos registrados por paises</h3>
-            <Table countries={tableData} />
-            <h3>Totalidad de casos en Chile</h3>
             <Chart confirmed={countryInfo.cases} recovered={countryInfo.recovered} deaths={countryInfo.deaths} />
+            <h3>Totalidad de casos en Chile</h3>
+            <Table countries={tableData} />
           </div>
         </CardContent>
       </Card>
