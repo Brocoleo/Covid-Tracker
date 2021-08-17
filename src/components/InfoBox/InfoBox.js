@@ -14,7 +14,7 @@ function InfoBox({ title, cases, total, colorCard,colorCases, ...props }) {
           {title}
         </Typography>
         <h2 className={`infoBox__cases ${colorCases}`}>
-          + { cases}
+          { cases}
         </h2>
         <Typography className="infoBox__dias" color="textSecondary">
         En los últimos 30 días
