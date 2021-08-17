@@ -20,7 +20,7 @@ function LineChart({ vaccines })  {
     labels: fechas.map((data) => data.date) ,
     datasets: [
       {
-        label: 'Personas vacunadas contra el covid',
+        label: 'Vacunas aplicadas',
         data: vaccines.map((data) => data.daily),
         fill: true,
         backgroundColor: 'rgba(127, 200, 169, 0.2)',

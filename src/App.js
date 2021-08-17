@@ -72,24 +72,21 @@ const App = () => {
             title="Casos de Coronavirus"
             colorCard={"infoBox--purple"}
             colorCases={"infoBox__cases--purple"}
-            cases={numeral(countryInfo.todayCases).format('+0,0')}
+            text={'Activos en los ultimos 30 dias'}
+            info={'casos en total'}
+            cases={countryInfo.active}
             total={numeral(countryInfo.cases).format('0,0')}
           />
          
-          <InfoBox
-            onClick={(e) => setCasesType("recovered")}
-            title="Recuperados"
-            colorCard={"infoBox--green"}
-            colorCases={"infoBox__cases--green"}
-            cases={numeral(countryInfo.todayRecovered).format('+0,0')}
-            total={numeral(countryInfo.recovered).format("0,0")}
-          />
+         
           <InfoBox
             onClick={(e) => setCasesType("deaths")}
-            title="Muertes"
+            title="Criticos"
             colorCard={"infoBox--red"}
             colorCases={"infoBox__cases--red"}
-            cases={numeral(countryInfo.todayDeaths).format('+0,0')}
+            text={'Criticos en los ultimos 30 dias'}
+            cases={countryInfo.critical}
+            info={'muertes en total'}
             total={numeral(countryInfo.deaths).format("0,0")}
           />
         </div>
