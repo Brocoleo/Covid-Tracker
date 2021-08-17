@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, CardContent, Typography } from "@material-ui/core";
-import CountUp from 'react-countup';
+import AnimatedNumbers from 'react-animated-numbers'
 import "./InfoBox.css";
 
 function InfoBox({ title, cases, total, colorCard,colorCases, ...props }) {
@@ -15,8 +15,13 @@ function InfoBox({ title, cases, total, colorCard,colorCases, ...props }) {
           {title}
         </Typography>
         <h2 className={`infoBox__cases ${colorCases}`}>
-          +
-        <CountUp start={0} end={cases} duration={2.75} separator="," />
+ 
+          <AnimatedNumbers
+        includeComma
+        animateToNumber={cases}
+        fontStyle={{ fontSize: 40 }}
+        
+      ></AnimatedNumbers>
         </h2>
         <Typography className="infoBox__dias" color="textSecondary">
         En los últimos 30 días
