@@ -19,8 +19,7 @@ const App = () => {
   const [countryInfo, setCountryInfo] = useState({}); 
   const [tableData, setTableData] = useState([]);
   const [vaccines, setVaccines] = useState([]);
-  const [casesType, setCasesType] = useState("cases");
-
+  const [ setCasesType] = useState("cases");
 
 
   useEffect(() => {
@@ -99,9 +98,9 @@ const App = () => {
       <Card className="app__right">
         <CardContent>
           <div className="app__information">
-            <h3>Casos registrados por paises</h3>
+          <h3>Totalidad de casos en Chile</h3>
             <Chart confirmed={countryInfo.cases} recovered={countryInfo.recovered} deaths={countryInfo.deaths} />
-            <h3>Totalidad de casos en Chile</h3>
+            <h3>Casos registrados por paises</h3>
             <Table countries={tableData} />
           </div>
         </CardContent>

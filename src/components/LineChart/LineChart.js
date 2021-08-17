@@ -1,38 +1,49 @@
-import React, {useState} from 'react';
-import { Line } from 'react-chartjs-2';
-const options = {
-  scales: {
-    yAxes: [
-      {
-        ticks: {
-          beginAtZero: true,
-        },
-      },
-    ],
-  },
-};
-
-
+import React from 'react';
+import { Line } from 'react-chartjs-2';  
 
 
 function LineChart({ vaccines })  {
-   
-    console.log(vaccines)
-
-    
-    const data = {
-        labels: vaccines.map((data) => data.date),
-        datasets: [
-          {
-            label: 'Personas vacunadas contra el covid',
-            data: vaccines.map((data) => data.daily),
-            fill: true,
-            backgroundColor: 'rgba(127, 200, 169, 0.2)',
-            borderColor: 'rgb(127, 200, 169)',
+  const options = {
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
           },
-        ],
-      };
+        },
+      ],
+    },
+  };
 
+  const fechas = vaccines.slice(1,27)
+  const data = {
+    labels: fechas.map((data) => data.date) ,
+    datasets: [
+      {
+        label: 'Personas vacunadas contra el covid',
+        data: vaccines.map((data) => data.daily),
+        fill: true,
+        backgroundColor: 'rgba(127, 200, 169, 0.2)',
+        borderColor: 'rgb(127, 200, 169)',
+        borderCapStyle: 'butt',
+        borderDash: [],
+        borderDashOffset: 0.0,
+        borderJoinStyle: 'miter',
+        pointBorderColor: 'rgba(75,192,192,1)',
+        pointBackgroundColor: '#fff',
+        pointBorderWidth: 1,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+        pointHoverBorderColor: 'rgba(220,220,220,1)',
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        lineTension: 0.1,
+      },
+    ],
+  };
+
+  
 return (
   <>
     <div className='header'>
@@ -41,7 +52,7 @@ return (
        
       </div>
     </div>
-    <Line data={data} options={options} />
+    <Line data={data}  options={options}/>
   </>
   )
 }
