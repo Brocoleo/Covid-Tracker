@@ -60,8 +60,10 @@ const App = () => {
     <div className="app">
       <div className="app__left">
       <img className="image" src={image} alt="COVID-19" />
-        <div className="app__header">
-        <h1> Estadisticas de la pandemia en nuestro pais  <Flag code={ "CL" } height="25" /> </h1>   
+      
+        <div className="app__header">        
+        <h1> Datos recolectados por <a href='https://disease.sh' target="_blank" >Disase.sh</a> acerca del estado de la pandemia en nuestr pais <Flag code={ "CL" } height="19" /> </h1>  
+        
           
         </div>
         <div className="app__stats">
